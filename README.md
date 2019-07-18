@@ -1,6 +1,6 @@
 stargaze.me
 ---
-Simple, easy ways to star Github repos.
+Simple, easy way to star Github repos.
 
 
 ## Copyright
