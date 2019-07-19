@@ -3,6 +3,15 @@ import AppComponent from '../app/app.component';
 import React from 'react';
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
   }

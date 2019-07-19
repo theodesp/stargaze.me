@@ -6,8 +6,8 @@ import { appTestSelectors } from './test.selectors';
 
 it('renders without crashing', () => {
   const { container } = render(<AppComponent />);
-  const title = getByTestId(container, appTestSelectors.title);
-  expect(title.textContent).toBe('stargaze.me');
+  const title = getByTestId(container, appTestSelectors.container);
+  expect(title.childElementCount).toBe(1);
 });
 
 it('matches snapshot', () => {
