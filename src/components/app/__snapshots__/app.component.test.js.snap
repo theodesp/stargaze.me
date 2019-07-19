@@ -5,19 +5,13 @@ exports[`matches snapshot 1`] = `
   className="App"
   data-testid="app-container"
 >
-  <header
-    className="App-header"
-  >
-    <img
-      alt="logo"
-      className="App-logo"
-      src="logo.svg"
-    />
-    <p
-      data-testid="app-title"
+  <div>
+    <button
+      data-testid="app-login-button"
+      onClick={[Function]}
     >
-      stargaze.me
-    </p>
-  </header>
+      Sign In to Github
+    </button>
+  </div>
 </div>
 `;
