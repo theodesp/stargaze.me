@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "stargaze.me",
+  "name": "Simple, easy way to star Github repos",
   "icons": [
     {
       "src": "favicon.ico",

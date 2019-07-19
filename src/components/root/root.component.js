@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components/macro';
-import App from '../../App';
+import AppComponent from '../app/app.component';
 import React from 'react';
 
 const GlobalStyle = createGlobalStyle`
@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 const Root = (
   <>
     <GlobalStyle />
-    <App />
+    <AppComponent />
   </>
 );
 
