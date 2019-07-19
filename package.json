@@ -27,6 +27,24 @@
       "git add"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -43,14 +61,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^8.0.5",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "husky": "^3.0.0",
     "lint-staged": "^9.2.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.8.6"
   },
   "engines": {
     "node": ">10.15.1"
