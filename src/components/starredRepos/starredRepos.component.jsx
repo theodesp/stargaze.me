@@ -28,7 +28,7 @@ const starredReposQuery = gql`
   }
 `;
 
-const updateRepositories = (prevResult, { fetchMoreResult }) => {
+const updateRepositories = (prevResult = {}, { fetchMoreResult = {} }) => {
   const previousViewer = prevResult.viewer || {};
   const currentViewer = fetchMoreResult.viewer || {};
   const previousNodes = previousViewer.starredRepositories.nodes || [];
@@ -49,9 +49,9 @@ const updateRepositories = (prevResult, { fetchMoreResult }) => {
     : prevResult;
 };
 
-export const StarredRepos = ({ numRepos }) => {
+export const StarredRepos = ({ numRepos = 25 }) => {
   const { loading, error, data, fetchMore } = useQuery(starredReposQuery, {
-    variables: { numRepos: numRepos || 25 },
+    variables: { numRepos: numRepos },
   });
 
   if (error) return <div>There was an error loading repositories!</div>;

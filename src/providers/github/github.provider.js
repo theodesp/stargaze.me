@@ -35,17 +35,16 @@ const GitHubClientProvider = ({
   children,
 }) => {
   const [apolloClient, setApolloClient] = useState(null);
-  const [isLoaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const token =
       window.localStorage.getItem('github-token') ||
       process.env.REACT_APP_GITHUB_TOKEN;
-    if (token && isLoaded) {
+    if (token) {
       setApolloClient(client);
     }
-  }, [client, isLoaded]); // Runs only once
+  }, [client]); // Runs only once
 
   const handleOnSignoutClick = () => {
     window.localStorage.removeItem('github-token');
@@ -62,7 +61,6 @@ const GitHubClientProvider = ({
     const data = await authenticate(gitHubConfig).catch(handleError);
     window.localStorage.setItem('github-token', data.token);
     setApolloClient(client);
-    setLoaded(true);
   };
 
   return apolloClient ? (

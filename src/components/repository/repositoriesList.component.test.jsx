@@ -1,6 +1,6 @@
+import React from 'react';
 import { render, getByTestId } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import React from 'react';
 import RepositoriesList from './repositoriesList.component';
 import { repositoriesListTestSelectors } from './repository.test.selectors';
 

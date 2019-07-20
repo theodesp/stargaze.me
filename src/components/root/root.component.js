@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Root = (
+export const Root = (
   <>
     <GlobalStyle />
     <AppComponent />
