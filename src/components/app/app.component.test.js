@@ -2,7 +2,7 @@ import React from 'react';
 import { render, getByTestId } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import AppComponent from './app.component';
-import { appTestSelectors } from './test.selectors';
+import { appTestSelectors } from './app.test.selectors';
 
 it('renders without crashing', () => {
   const { container } = render(<AppComponent />);
