@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { ApolloClient } from 'apollo-client';
@@ -24,76 +24,72 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const client = new ApolloClient({
+const Apollo = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
-class GitHubClientProvider extends React.Component {
-  state = {
-    client: this.props.client || null,
-    error: null,
-  };
-  componentDidMount() {
+const GitHubClientProvider = ({
+  client = Apollo,
+  authenticate = authWithGitHub,
+  children,
+}) => {
+  const [apolloClient, setApolloClient] = useState(null);
+  const [isLoaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
     const token =
       window.localStorage.getItem('github-token') ||
       process.env.REACT_APP_GITHUB_TOKEN;
-    if (token) {
-      this.setState({
-        client: client,
-      });
+    if (token && isLoaded) {
+      setApolloClient(client);
     }
-  }
-  handleOnSignoutClick = () => {
+  }, [client, isLoaded]); // Runs only once
+
+  const handleOnSignoutClick = () => {
     window.localStorage.removeItem('github-token');
-    this.state.client.resetStore();
-    this.setState({
-      client: null,
-      error: null,
-    });
+    apolloClient.resetStore();
+    setApolloClient(null);
+    setError(null);
   };
 
-  handleOnLoginClick = async () => {
-    const { authenticate = authWithGitHub } = this.props;
+  const handleOnLoginClick = async () => {
     const handleError = error => {
       console.warn('Error: ', error);
-      this.setState({ error });
+      setError(error);
     };
     const data = await authenticate(gitHubConfig).catch(handleError);
     window.localStorage.setItem('github-token', data.token);
-    this.setState({ client: client });
+    setApolloClient(client);
+    setLoaded(true);
   };
 
-  render() {
-    const { client, error } = this.state;
-    const { children } = this.props;
-
-    return client ? (
-      <ApolloProvider client={client}>
-        <button
-          data-testid={githubTestSelectors.loginButton}
-          onClick={this.handleOnSignoutClick}
-        >
-          Sign Out
-        </button>
-        {children}
-      </ApolloProvider>
-    ) : error ? (
-      <div>
-        Error! <pre>{JSON.stringify(error, null, 2)}</pre>
-      </div>
-    ) : (
-      <div>
-        <button
-          data-testid={githubTestSelectors.loginButton}
-          onClick={this.handleOnLoginClick}
-        >
-          Sign In to Github
-        </button>
-      </div>
-    );
-  }
-}
+  return apolloClient ? (
+    <ApolloProvider client={apolloClient}>
+      <button
+        data-testid={githubTestSelectors.loginButton}
+        onClick={handleOnSignoutClick}
+      >
+        Sign Out
+      </button>
+      {children}
+    </ApolloProvider>
+  ) : error ? (
+    <div>
+      Error! <pre>{JSON.stringify(error, null, 2)}</pre>
+    </div>
+  ) : (
+    <div>
+      <button
+        data-testid={githubTestSelectors.loginButton}
+        onClick={handleOnLoginClick}
+      >
+        Sign In to Github
+      </button>
+    </div>
+  );
+};
 
 GitHubClientProvider.propTypes = {
   client: PropTypes.object,

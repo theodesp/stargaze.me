@@ -32,7 +32,7 @@ it('renders without crashing', () => {
 });
 
 it('authenticates', async () => {
-  const { container } = render(
+  const { container, rerender } = render(
     <GitHubClientProvider authenticate={fakeAuthenticator} />
   );
   fireEvent.click(getByTestId(container, githubTestSelectors.loginButton));
