@@ -3,9 +3,9 @@
 exports[`<SearchRepos /> Empty Query State matches loading snapshot 1`] = `
 <div>
   <div
-    data-testid="starredRepos-empty"
+    data-testid="starredRepos-error"
   >
-    Search query is empty!
+    There was an error loading repositories!
   </div>
 </div>
 `;

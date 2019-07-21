@@ -41,13 +41,23 @@ const updateRepositories = (prevResult = {}, { fetchMoreResult = {} }) => {
 };
 
 export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
-  debugger;
   const { loading, error, data, fetchMore } = useQuery(searchReposQuery, {
     variables: { numRepos: numRepos, query },
   });
-  if (!query) return <div data-testid={searchReposTestSelectors.empty}>Search query is empty!</div>;
-  if (error) return <div data-testid={searchReposTestSelectors.error}>There was an error loading repositories!</div>;
-  if (loading) return <div data-testid={searchReposTestSelectors.loading}>Loading...</div>;
+  if (!query)
+    return (
+      <div data-testid={searchReposTestSelectors.empty}>
+        Search query is empty!
+      </div>
+    );
+  if (error)
+    return (
+      <div data-testid={searchReposTestSelectors.error}>
+        There was an error loading repositories!
+      </div>
+    );
+  if (loading)
+    return <div data-testid={searchReposTestSelectors.loading}>Loading...</div>;
   const hasMoreRepos = data.search && data.search.pageInfo.hasNextPage;
 
   return (

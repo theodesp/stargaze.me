@@ -1,8 +1,9 @@
 import React from 'react';
+import SearchForm from '../searchForm/searchForm.component';
 
 export const SearchScene = ({ children }) => (
-  <div>
-    <h1>Search</h1>
+  <div style={{ 'margin-top': '1em' }}>
+    <SearchForm />
     {children}
   </div>
 );

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<form
+  data-testid="search-form"
+  onSubmit={[Function]}
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "center",
+      "margin": "auto",
+      "maxWidth": 300,
+    }
+  }
+>
+  <input
+    autoFocus={true}
+    data-testid="search-form-input"
+    name="repos"
+    placeholder="Enter a Repository name"
+    size={32}
+    style={
+      Object {
+        "borderBottomRightRadius": "0",
+        "borderRight": "none",
+        "borderTopRightRadius": "0",
+      }
+    }
+    type="search"
+  />
+  <button
+    data-testid="search-form-submit"
+    type="submit"
+  >
+    Search
+  </button>
+</form>
+`;
