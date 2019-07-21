@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StarredRepos /> Error State matches error snapshot 1`] = `
+<div>
+  <div
+    data-testid="starredRepos-error"
+  >
+    There was an error loading repositories!
+  </div>
+</div>
+`;
+
+exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
+<div>
+  <div>
+    <header>
+      <hgroup>
+        <h2>
+          Your starred Repos
+        </h2>
+        <h4
+          data-testid="starredRepos-header"
+        >
+          You have starred 
+          100
+           repos
+        </h4>
+      </hgroup>
+    </header>
+    <hr />
+    <ul
+      data-testid="repositories-list"
+    >
+      <div>
+        <h2
+          data-testid="repository-name"
+        >
+          computer-science-for-javascript
+        </h2>
+        <a
+          data-testid="repository-url"
+          href="https://github.com/theodesp/computer-science-for-javascript"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/theodesp/computer-science-for-javascript
+        </a>
+        <p
+          data-testid="repository-description"
+        >
+          A complete collection of useful data structures and algorithms in JavaScript
+        </p>
+      </div>
+    </ul>
+    <button
+      data-testid="starredRepos-loadMore-button"
+    >
+      Show more
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<StarredRepos /> Loading State matches loading snapshot 1`] = `
+<div>
+  <div
+    data-testid="starredRepos-loading"
+  >
+    Loading...
+  </div>
+</div>
+`;

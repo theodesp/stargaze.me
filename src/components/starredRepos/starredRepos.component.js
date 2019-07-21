@@ -4,8 +4,9 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { RepositoriesList } from '../repository/repositoriesList.component';
+import { starredReposTestSelectors } from './starredRepos.testSelectors';
 
-const starredReposQuery = gql`
+export const starredReposQuery = gql`
   query StarredReposQuery($numRepos: Int, $after: String) {
     viewer {
       id
@@ -54,8 +55,16 @@ export const StarredRepos = ({ numRepos = 25 }) => {
     variables: { numRepos: numRepos },
   });
 
-  if (error) return <div>There was an error loading repositories!</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div data-testid={starredReposTestSelectors.error}>
+        There was an error loading repositories!
+      </div>
+    );
+  if (loading)
+    return (
+      <div data-testid={starredReposTestSelectors.loading}>Loading...</div>
+    );
   const hasMoreRepos =
     data.viewer && data.viewer.starredRepositories.pageInfo.hasNextPage;
 
@@ -64,7 +73,7 @@ export const StarredRepos = ({ numRepos = 25 }) => {
       <header>
         <hgroup>
           <h2>Your starred Repos</h2>
-          <h4>
+          <h4 data-testid={starredReposTestSelectors.header}>
             You have starred {data.viewer.starredRepositories.totalCount} repos
           </h4>
         </hgroup>
@@ -73,6 +82,7 @@ export const StarredRepos = ({ numRepos = 25 }) => {
       <RepositoriesList repositories={data.viewer.starredRepositories} />
       {hasMoreRepos ? (
         <button
+          data-testid={starredReposTestSelectors.loadMoreButton}
           onClick={() => {
             fetchMore({
               starredReposQuery,
@@ -94,3 +104,5 @@ export const StarredRepos = ({ numRepos = 25 }) => {
 StarredRepos.propTypes = {
   numRepos: PropTypes.number,
 };
+
+export default StarredRepos;
