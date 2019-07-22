@@ -1,29 +1,14 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { RepositoriesList } from '../repository/repositoriesList.component';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { RepositoriesList } from '../repositoryList/repositoriesList.component';
 import { searchReposTestSelectors } from './searchRepos.testSelectors';
-
-export const searchReposQuery = gql`
-  query($query: String!, $after: String) {
-    search(type: REPOSITORY, query: $query, first: 25, after: $after) {
-      repositoryCount
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      nodes {
-        ... on Repository {
-          id
-          name
-          url
-          description
-          viewerHasStarred
-        }
-      }
-    }
-  }
-`;
+import { searchReposQuery } from '../queries';
+import {
+  addStarMutation,
+  removeStarMutation,
+  addStarAction,
+  removeStarAction,
+} from '../mutation';
 
 const updateRepositories = (prevResult = {}, { fetchMoreResult = {} }) => {
   const previousSearch = prevResult.search || {};
@@ -44,6 +29,9 @@ export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
   const { loading, error, data, fetchMore } = useQuery(searchReposQuery, {
     variables: { numRepos: numRepos, query },
   });
+  const [addStar, props] = useMutation(addStarMutation);
+  const [removeStar] = useMutation(removeStarMutation);
+
   if (!query)
     return (
       <div data-testid={searchReposTestSelectors.empty}>
@@ -71,7 +59,11 @@ export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
         </hgroup>
       </header>
       <hr />
-      <RepositoriesList repositories={data.search} />
+      <RepositoriesList
+        repositories={data.search}
+        onAddStar={id => addStar(addStarAction(id))}
+        onRemoveStar={id => removeStar(removeStarAction(id))}
+      />
       {hasMoreRepos ? (
         <button
           data-testid={searchReposTestSelectors.loadMoreButton}

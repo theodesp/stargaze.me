@@ -2,8 +2,9 @@ import React from 'react';
 import { GraphQLError } from 'graphql';
 import { MockedProvider } from '@apollo/react-testing';
 import { render, getByTestId, waitForElement } from '@testing-library/react';
-import StarredRepos, { starredReposQuery } from './starredRepos.component';
+import StarredRepos from './starredRepos.component';
 import { starredReposTestSelectors } from './starredRepos.testSelectors';
+import { starredReposQuery } from '../queries';
 
 const STARRED_REPOS_RESPONSE = {
   viewer: {
@@ -24,6 +25,7 @@ const STARRED_REPOS_RESPONSE = {
           description:
             'A complete collection of useful data structures and algorithms in JavaScript',
           url: 'https://github.com/theodesp/computer-science-for-javascript',
+          viewerHasStarred: true,
           __typename: 'Repo',
         },
       ],

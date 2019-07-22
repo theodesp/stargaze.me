@@ -1,33 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
-import { RepositoriesList } from '../repository/repositoriesList.component';
+import { RepositoriesList } from '../repositoryList/repositoriesList.component';
 import { starredReposTestSelectors } from './starredRepos.testSelectors';
-
-export const starredReposQuery = gql`
-  query StarredReposQuery($numRepos: Int, $after: String) {
-    viewer {
-      id
-      name
-      avatarUrl
-      starredRepositories(first: $numRepos, after: $after) {
-        totalCount
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        nodes {
-          id
-          name
-          description
-          url
-        }
-      }
-    }
-  }
-`;
+import { starredReposQuery } from '../queries';
+import { addStarMutation, removeStarMutation, addStarAction, removeStarAction } from '../mutation';
 
 const updateRepositories = (prevResult = {}, { fetchMoreResult = {} }) => {
   const previousViewer = prevResult.viewer || {};
@@ -55,6 +33,9 @@ export const StarredRepos = ({ numRepos = 25 }) => {
     variables: { numRepos: numRepos },
   });
 
+  const [addStar] = useMutation(addStarMutation);
+  const [removeStar] = useMutation(removeStarMutation);
+
   if (error)
     return (
       <div data-testid={starredReposTestSelectors.error}>
@@ -79,7 +60,11 @@ export const StarredRepos = ({ numRepos = 25 }) => {
         </hgroup>
       </header>
       <hr />
-      <RepositoriesList repositories={data.viewer.starredRepositories} />
+      <RepositoriesList
+        repositories={data.viewer.starredRepositories}
+        onAddStar={id => addStar(addStarAction(id))}
+        onRemoveStar={id => removeStar(removeStarAction(id))}
+      />
       {hasMoreRepos ? (
         <button
           data-testid={starredReposTestSelectors.loadMoreButton}

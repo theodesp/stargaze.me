@@ -1,10 +1,10 @@
 import React from 'react';
-import { searchReposQuery, SearchRepos } from './searchRepos.component';
+import { SearchRepos } from './searchRepos.component';
 import { GraphQLError } from 'graphql';
 import { render, getByTestId, waitForElement } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { searchReposTestSelectors } from './searchRepos.testSelectors';
-import { starredReposTestSelectors } from '../starredRepos/starredRepos.testSelectors';
+import { searchReposQuery } from '../queries';
 
 const SEARCH_REPOS_RESPONSE = {
   search: {
@@ -65,7 +65,7 @@ describe('<SearchRepos />', () => {
     beforeEach(() => {
       rendered = render(
         <MockedProvider mocks={SEARCH_REPOS_MOCKS}>
-          <SearchRepos numRepos={2} query={'q'} />
+          <SearchRepos numRepos={2} query={''} />
         </MockedProvider>
       );
     });
@@ -120,7 +120,7 @@ describe('<SearchRepos />', () => {
 
       const loadMoreButton = getByTestId(
         container,
-        starredReposTestSelectors.loadMoreButton
+        searchReposTestSelectors.loadMoreButton
       );
       expect(loadMoreButton).toBeVisible();
       expect(loadMoreButton.textContent).toBe('Show more');

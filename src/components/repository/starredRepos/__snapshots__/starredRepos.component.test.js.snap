@@ -45,6 +45,11 @@ exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
         >
           https://github.com/theodesp/computer-science-for-javascript
         </a>
+        <img
+          alt="viewerHasStarred"
+          src="[object Object]"
+          style="vertical-align: middle; cursor: pointer;"
+        />
         <p
           data-testid="repository-description"
         >

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<ul
+  data-testid="repositories-list"
+>
+  <div>
+    <h2
+      data-testid="repository-name"
+    >
+      stargaze.me
+    </h2>
+    <a
+      data-testid="repository-url"
+      href="http://stargaze.me"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      http://stargaze.me
+    </a>
+    <img
+      alt="viewerHasStarred"
+      onClick={[Function]}
+      src={
+        Object {
+          "0": "s",
+          "1": "t",
+          "10": "e",
+          "11": ".",
+          "12": "p",
+          "13": "n",
+          "14": "g",
+          "2": "a",
+          "3": "r",
+          "4": "-",
+          "5": "a",
+          "6": "c",
+          "7": "t",
+          "8": "i",
+          "9": "v",
+          "default": "star-active.png",
+        }
+      }
+      style={
+        Object {
+          "cursor": "pointer",
+          "verticalAlign": "middle",
+        }
+      }
+    />
+    <p
+      data-testid="repository-description"
+    >
+      star
+    </p>
+  </div>
+</ul>
+`;

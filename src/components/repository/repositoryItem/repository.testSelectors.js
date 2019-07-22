@@ -3,7 +3,3 @@ export const repositoryTestSelectors = {
   description: 'repository-description',
   url: 'repository-url',
 };
-
-export const repositoriesListTestSelectors = {
-  list: 'repositories-list',
-};

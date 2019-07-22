@@ -2,12 +2,13 @@ import { render, getByTestId } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import React from 'react';
 import RepositoryItem from './repositoryItem.component';
-import { repositoryTestSelectors } from './repository.test.selectors';
+import { repositoryTestSelectors } from './repository.testSelectors';
 
 const repository = {
   name: 'stargaze.me',
   url: 'http://stargaze.me',
   description: 'star',
+  viewerHasStarred: true,
 };
 
 it('renders without crashing', () => {
