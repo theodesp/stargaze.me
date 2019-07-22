@@ -3,6 +3,7 @@
 exports[`<SearchRepos /> Empty Query State matches loading snapshot 1`] = `
 <div>
   <div
+    class="sc-bdVaJa kmtHOY"
     data-testid="starredRepos-empty"
   >
     Search query is empty!
@@ -13,6 +14,7 @@ exports[`<SearchRepos /> Empty Query State matches loading snapshot 1`] = `
 exports[`<SearchRepos /> Error State matches error snapshot 1`] = `
 <div>
   <div
+    class="sc-bdVaJa kmtHOY"
     data-testid="starredRepos-error"
   >
     There was an error loading repositories!
@@ -23,6 +25,7 @@ exports[`<SearchRepos /> Error State matches error snapshot 1`] = `
 exports[`<SearchRepos /> Loading State matches loading snapshot 1`] = `
 <div>
   <div
+    class="sc-bdVaJa kmtHOY"
     data-testid="starredRepos-loading"
   >
     Loading...

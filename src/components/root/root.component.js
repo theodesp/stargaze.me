@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
+import theme from '../../styles/theme';
 import AppComponent from '../app/app.component';
 import React from 'react';
 
@@ -24,7 +25,9 @@ const GlobalStyle = createGlobalStyle`
 export const Root = (
   <>
     <GlobalStyle />
-    <AppComponent />
+    <ThemeProvider theme={theme}>
+      <AppComponent />
+    </ThemeProvider>
   </>
 );
 

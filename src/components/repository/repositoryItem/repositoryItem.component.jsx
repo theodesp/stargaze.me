@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card } from 'rebass';
+
 import { repositoryTestSelectors } from './repository.testSelectors';
 import Star from '../../star/star.component';
 
@@ -11,7 +13,17 @@ const RepositoryItem = ({
   onAddStar,
   onRemoveStar,
 }) => (
-  <div>
+  <Card
+    p={5}
+    my={5}
+    borderRadius={8}
+    boxShadow="0 2px 16px rgba(0, 0, 0, 0.25)"
+  >
+    <Star
+      viewerHasStarred={viewerHasStarred}
+      onAddStar={onAddStar ? onAddStar : null}
+      onRemoveStar={onRemoveStar ? onRemoveStar : null}
+    />
     <h2 data-testid={repositoryTestSelectors.name}>{name}</h2>
     <a
       data-testid={repositoryTestSelectors.url}
@@ -21,13 +33,8 @@ const RepositoryItem = ({
     >
       {url}
     </a>
-    <Star
-      viewerHasStarred={viewerHasStarred}
-      onAddStar={onAddStar ? onAddStar : null}
-      onRemoveStar={onRemoveStar ? onRemoveStar : null}
-    />
     <p data-testid={repositoryTestSelectors.description}>{description}</p>
-  </div>
+  </Card>
 );
 
 RepositoryItem.propTypes = {

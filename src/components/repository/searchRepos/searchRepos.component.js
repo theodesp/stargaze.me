@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+import { Button, Box } from 'rebass';
 import { RepositoriesList } from '../repositoryList/repositoriesList.component';
 import { searchReposTestSelectors } from './searchRepos.testSelectors';
 import { searchReposQuery } from '../queries';
@@ -29,23 +30,27 @@ export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
   const { loading, error, data, fetchMore } = useQuery(searchReposQuery, {
     variables: { numRepos: numRepos, query },
   });
-  const [addStar, props] = useMutation(addStarMutation);
+  const [addStar] = useMutation(addStarMutation);
   const [removeStar] = useMutation(removeStarMutation);
 
   if (!query)
     return (
-      <div data-testid={searchReposTestSelectors.empty}>
+      <Box mt={2} data-testid={searchReposTestSelectors.empty}>
         Search query is empty!
-      </div>
+      </Box>
     );
   if (error)
     return (
-      <div data-testid={searchReposTestSelectors.error}>
+      <Box mt={2} data-testid={searchReposTestSelectors.error}>
         There was an error loading repositories!
-      </div>
+      </Box>
     );
   if (loading)
-    return <div data-testid={searchReposTestSelectors.loading}>Loading...</div>;
+    return (
+      <Box mt={2} data-testid={searchReposTestSelectors.loading}>
+        Loading...
+      </Box>
+    );
   const hasMoreRepos = data.search && data.search.pageInfo.hasNextPage;
 
   return (
@@ -65,7 +70,10 @@ export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
         onRemoveStar={id => removeStar(removeStarAction(id))}
       />
       {hasMoreRepos ? (
-        <button
+        <Button
+          style={{
+            marginBottom: '1em',
+          }}
           data-testid={searchReposTestSelectors.loadMoreButton}
           onClick={() => {
             fetchMore({
@@ -80,7 +88,7 @@ export const SearchRepos = ({ query = 'bootstrap', numRepos = 25 }) => {
           }}
         >
           Show more
-        </button>
+        </Button>
       ) : null}
     </div>
   );

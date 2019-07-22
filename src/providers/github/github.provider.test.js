@@ -8,7 +8,7 @@ import {
 import renderer from 'react-test-renderer';
 
 import GitHubClientProvider from './github.provider';
-import { githubTestSelectors } from './girhubTestSelectors';
+import { menuBarTestSelectors } from '../../components/menuBar/menuBarTestSelectors';
 
 const fakeResponse = { token: '123' };
 const fakeAuthenticator = jest.fn(() => Promise.resolve(fakeResponse));
@@ -27,7 +27,7 @@ it('renders without crashing', () => {
   const { container } = render(
     <GitHubClientProvider authenticate={fakeAuthenticator} />
   );
-  const login = getByTestId(container, githubTestSelectors.loginButton);
+  const login = getByTestId(container, menuBarTestSelectors.loginButton);
   expect(login.textContent).toBe('Sign In to Github');
 });
 
@@ -35,12 +35,12 @@ it('authenticates', async () => {
   const { container } = render(
     <GitHubClientProvider authenticate={fakeAuthenticator} />
   );
-  fireEvent.click(getByTestId(container, githubTestSelectors.loginButton));
+  fireEvent.click(getByTestId(container, menuBarTestSelectors.loginButton));
   await waitForElement(
-    () => getByTestId(container, githubTestSelectors.loginButton),
+    () => getByTestId(container, menuBarTestSelectors.loginButton),
     { container }
   );
-  const logout = getByTestId(container, githubTestSelectors.loginButton);
+  const logout = getByTestId(container, menuBarTestSelectors.loginButton);
   expect(logout.textContent).toBe('Sign Out');
 });
 

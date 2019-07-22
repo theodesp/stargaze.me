@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+import { Box, Button } from 'rebass';
 
 import { RepositoriesList } from '../repositoryList/repositoriesList.component';
 import { starredReposTestSelectors } from './starredRepos.testSelectors';
 import { starredReposQuery } from '../queries';
-import { addStarMutation, removeStarMutation, addStarAction, removeStarAction } from '../mutation';
+import {
+  addStarMutation,
+  removeStarMutation,
+  addStarAction,
+  removeStarAction,
+} from '../mutation';
 
 const updateRepositories = (prevResult = {}, { fetchMoreResult = {} }) => {
   const previousViewer = prevResult.viewer || {};
@@ -38,13 +44,15 @@ export const StarredRepos = ({ numRepos = 25 }) => {
 
   if (error)
     return (
-      <div data-testid={starredReposTestSelectors.error}>
+      <Box mt={2} data-testid={starredReposTestSelectors.error}>
         There was an error loading repositories!
-      </div>
+      </Box>
     );
   if (loading)
     return (
-      <div data-testid={starredReposTestSelectors.loading}>Loading...</div>
+      <Box mt={2} data-testid={starredReposTestSelectors.loading}>
+        Loading...
+      </Box>
     );
   const hasMoreRepos =
     data.viewer && data.viewer.starredRepositories.pageInfo.hasNextPage;
@@ -66,7 +74,10 @@ export const StarredRepos = ({ numRepos = 25 }) => {
         onRemoveStar={id => removeStar(removeStarAction(id))}
       />
       {hasMoreRepos ? (
-        <button
+        <Button
+          style={{
+            marginBottom: '1em',
+          }}
           data-testid={starredReposTestSelectors.loadMoreButton}
           onClick={() => {
             fetchMore({
@@ -80,7 +91,7 @@ export const StarredRepos = ({ numRepos = 25 }) => {
           }}
         >
           Show more
-        </button>
+        </Button>
       ) : null}
     </div>
   );

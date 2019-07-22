@@ -5,13 +5,51 @@ exports[`matches snapshot 1`] = `
   className="App"
   data-testid="app-container"
 >
-  <div>
-    <button
+  <div
+    className="sc-bdVaJa sc-dnqmqq bUIycl"
+    color="white"
+  >
+    <nav>
+      <a
+        aria-current="page"
+        className="sc-iwsKbI iSGNcw"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "red",
+          }
+        }
+      >
+        Home
+      </a>
+      <a
+        className="sc-iwsKbI iSGNcw"
+        href="/search"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      >
+        Search
+      </a>
+    </nav>
+    <h1
+      data-testid="app-title"
+    >
+      stargaze.me
+    </h1>
+    <a
+      className="sc-bdVaJa sc-ifAKCX sc-htoDjs hSqoQA"
+      color="blue"
       data-testid="app-login-button"
+      href="#"
       onClick={[Function]}
     >
       Sign In to Github
-    </button>
+    </a>
   </div>
 </div>
 `;

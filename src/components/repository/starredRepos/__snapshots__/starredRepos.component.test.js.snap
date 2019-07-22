@@ -3,6 +3,7 @@
 exports[`<StarredRepos /> Error State matches error snapshot 1`] = `
 <div>
   <div
+    class="sc-bdVaJa kmtHOY"
     data-testid="starredRepos-error"
   >
     There was an error loading repositories!
@@ -29,9 +30,17 @@ exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
     </header>
     <hr />
     <ul
+      class="sc-htoDjs htrlDF"
       data-testid="repositories-list"
     >
-      <div>
+      <div
+        class="sc-bdVaJa sc-gzVnrw beCVhZ"
+      >
+        <img
+          alt="viewerHasStarred"
+          src="[object Object]"
+          style="vertical-align: middle; cursor: pointer;"
+        />
         <h2
           data-testid="repository-name"
         >
@@ -45,11 +54,6 @@ exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
         >
           https://github.com/theodesp/computer-science-for-javascript
         </a>
-        <img
-          alt="viewerHasStarred"
-          src="[object Object]"
-          style="vertical-align: middle; cursor: pointer;"
-        />
         <p
           data-testid="repository-description"
         >
@@ -58,7 +62,12 @@ exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
       </div>
     </ul>
     <button
+      class="sc-bdVaJa sc-EHOje fuetwF"
+      color="white"
       data-testid="starredRepos-loadMore-button"
+      font-size="inherit"
+      font-weight="bold"
+      style="margin-bottom: 1em;"
     >
       Show more
     </button>
@@ -69,6 +78,7 @@ exports[`<StarredRepos /> Loaded State matches loaded snapshot 1`] = `
 exports[`<StarredRepos /> Loading State matches loading snapshot 1`] = `
 <div>
   <div
+    class="sc-bdVaJa kmtHOY"
     data-testid="starredRepos-loading"
   >
     Loading...

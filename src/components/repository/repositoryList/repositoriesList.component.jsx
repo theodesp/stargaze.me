@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import RepositoryItemComponent from '../repositoryItem/repositoryItem.component';
 import { repositoriesListTestSelectors } from './respositoryList.testSelectors';
 
+const UnorderedList = styled.ul`
+  padding: 0;
+  list-style-type: none;
+`;
+
 export const RepositoriesList = ({ repositories, onAddStar, onRemoveStar }) => {
   return (
-    <ul data-testid={repositoriesListTestSelectors.list}>
+    <UnorderedList data-testid={repositoriesListTestSelectors.list}>
       {repositories.nodes.map(
         ({ name, description, url, id, viewerHasStarred }) => (
           <RepositoryItemComponent
@@ -19,7 +25,7 @@ export const RepositoriesList = ({ repositories, onAddStar, onRemoveStar }) => {
           />
         )
       )}
-    </ul>
+    </UnorderedList>
   );
 };
 

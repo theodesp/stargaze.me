@@ -2,22 +2,12 @@
 
 exports[`matches snapshot 1`] = `
 <ul
+  className="sc-htoDjs htrlDF"
   data-testid="repositories-list"
 >
-  <div>
-    <h2
-      data-testid="repository-name"
-    >
-      stargaze.me
-    </h2>
-    <a
-      data-testid="repository-url"
-      href="http://stargaze.me"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      http://stargaze.me
-    </a>
+  <div
+    className="sc-bdVaJa sc-gzVnrw beCVhZ"
+  >
     <img
       alt="viewerHasStarred"
       onClick={[Function]}
@@ -48,6 +38,19 @@ exports[`matches snapshot 1`] = `
         }
       }
     />
+    <h2
+      data-testid="repository-name"
+    >
+      stargaze.me
+    </h2>
+    <a
+      data-testid="repository-url"
+      href="http://stargaze.me"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      http://stargaze.me
+    </a>
     <p
       data-testid="repository-description"
     >

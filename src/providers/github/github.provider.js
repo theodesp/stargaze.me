@@ -11,7 +11,8 @@ import { onError } from 'apollo-link-error';
 
 import { gitHubConfig } from '../../config';
 import { authWithGitHub } from '../../services';
-import { githubTestSelectors } from './girhubTestSelectors';
+import { MenuBar } from '../../components/menuBar/menuBar.component';
+import Container from '../../styles/layout/container';
 
 const httpLink = createHttpLink({
   uri: gitHubConfig.apiUrl,
@@ -78,27 +79,15 @@ const GitHubClientProvider = ({
 
   return apolloClient ? (
     <ApolloProvider client={apolloClient}>
-      <button
-        data-testid={githubTestSelectors.loginButton}
-        onClick={handleOnSignoutClick}
-      >
-        Sign Out
-      </button>
-      {children}
+      <MenuBar onSignOut={handleOnSignoutClick} isAuthenticated={true} />
+      <Container>{children}</Container>
     </ApolloProvider>
   ) : error ? (
     <div>
       Error! <pre>{JSON.stringify(error, null, 2)}</pre>
     </div>
   ) : (
-    <div>
-      <button
-        data-testid={githubTestSelectors.loginButton}
-        onClick={handleOnLoginClick}
-      >
-        Sign In to Github
-      </button>
-    </div>
+    <MenuBar onSignIn={handleOnLoginClick} isAuthenticated={false} />
   );
 };
 

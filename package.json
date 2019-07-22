@@ -8,6 +8,7 @@
     "@reach/router": "^1.2.1",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
+    "apollo-link": "^1.2.12",
     "apollo-link-context": "^1.0.18",
     "apollo-link-error": "^1.1.11",
     "apollo-link-http": "^1.5.15",
@@ -21,6 +22,7 @@
     "react-dom": "^16.9.0-alpha.0",
     "react-netlify-identity": "^0.1.9",
     "react-scripts": "3.0.1",
+    "rebass": "^3.1.1",
     "remove": "^0.1.5",
     "styled-components": "^4.3.2",
     "waait": "^1.0.5"
