@@ -6,9 +6,18 @@ import TopMenu from '../../styles/components/topMenu';
 import { menuBarTestSelectors } from './menuBarTestSelectors';
 import PropTypes from 'prop-types';
 
+import { device } from '../../styles/device';
+
 const MenuBarLink = styled(NavLink)({
   padding: '0 1em',
 });
+
+const LogoName = styled.h1`
+  padding: 0 1em;
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
 
 export const MenuBar = ({ isAuthenticated, onSignOut, onSignIn }) => {
   return (
@@ -17,7 +26,7 @@ export const MenuBar = ({ isAuthenticated, onSignOut, onSignIn }) => {
         <MenuBarLink to="/">Home</MenuBarLink>
         <MenuBarLink to="/search">Search</MenuBarLink>
       </nav>
-      <h1 data-testid={menuBarTestSelectors.title}>stargaze.me</h1>
+      <LogoName data-testid={menuBarTestSelectors.title}>stargaze.me</LogoName>
       {isAuthenticated ? (
         <LinkButton
           href="#"

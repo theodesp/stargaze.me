@@ -33,6 +33,7 @@ exports[`matches snapshot 1`] = `
     </a>
   </nav>
   <h1
+    className="sc-gZMcBi ffjHH"
     data-testid="app-title"
   >
     stargaze.me
